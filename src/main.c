@@ -39,6 +39,8 @@ int main ()
 
 		// draw our texture to the screen
 		DrawTexture(wabbit, 400, 200, WHITE);
+
+		DrawCircleV(GetMousePosition(), 20, BLUE);
 		
 		// end the frame and get ready for the next one  (display frame, poll input, etc...)
 		EndDrawing();
