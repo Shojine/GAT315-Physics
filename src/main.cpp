@@ -9,6 +9,7 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 #include "scene.h"
 #include "trigonometry_scene.h"
 #include "raylib.h"
+#include "PolarScene.h"
 
 
 #include "resource_dir.h"	// utility header for SearchAndSetResourceDir
@@ -27,7 +28,9 @@ int main ()
 	// Load a texture from the resources directory
 	Texture wabbit = LoadTexture("wabbit_alpha.png");
 
-	Scene* scene = new TrigonometryScene("Trigonometry", 1280, 720, BLACK);
+	//Scene* scene = new TrigonometryScene("Trigonometry", 1280, 720, BLACK);
+	Scene* scene = new PolarScene("Trigonometry", 1280, 720, BLACK);
+
 	scene->Initialize();
 
 	while (!WindowShouldClose())
