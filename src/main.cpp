@@ -10,6 +10,7 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 #include "trigonometry_scene.h"
 #include "raylib.h"
 #include "PolarScene.h"
+#include "vector_scene.h"
 
 
 #include "resource_dir.h"	// utility header for SearchAndSetResourceDir
@@ -29,7 +30,9 @@ int main ()
 	Texture wabbit = LoadTexture("wabbit_alpha.png");
 
 	//Scene* scene = new TrigonometryScene("Trigonometry", 1280, 720, BLACK);
-	Scene* scene = new PolarScene("Trigonometry", 1280, 720, BLACK);
+	//Scene* scene = new PolarScene("Trigonometry", 1280, 720, BLACK);
+
+	Scene* scene = new VectorScene("Vector", 1280, 720, BLACK);
 
 	scene->Initialize();
 
