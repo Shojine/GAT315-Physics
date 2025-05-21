@@ -1,4 +1,4 @@
-#include "vector_scene.h"
+#include "spring_scene.h"
 #include "gui.h"
 #include "raymath.h"
 #include "mathUttils.h"
@@ -7,7 +7,7 @@
 #include <iostream>
 #define GUI_DATA(data) TextFormat("%0.2f", data), &data
 
-void VectorScene::Initialize()
+void SpringScene::Initialize()
 {
 	m_camera = new SceneCamera(Vector2{ (float)m_width / 2,(float)m_height / 2 });
 	m_world = new World();
@@ -15,30 +15,38 @@ void VectorScene::Initialize()
 
 }
 
-void VectorScene::Update()
+void SpringScene::Update()
 {
 
 	float dt = GetFrameTime();
 	GUI::Update();
 
-	if (!GUI::mouseOverGUI && IsMouseButtonPressed(0))
+	if (IsKeyPressed(KEY_SPACE)) World::simulate = !World::simulate;
+
+	if (!GUI::mouseOverGUI)
 	{
-		Body::Type type = (Body::Type)GUI::bodyTypeActive;
-		Vector2 position = m_camera->ScreenToWorld(GetMousePosition());
-		for (int i = 0; i < 100; i++)
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
-			Body* body = m_world->CreateBody(position, 0.05f, ColorFromHSV(randomf(360), 1, 1));
-			float theta = randomf(0, 360);
-			float x = cos(theta);
-			float y = sin(theta);
-				
+			Body::Type type = (Body::Type)GUI::bodyTypeActive;
+			Vector2 position = m_camera->ScreenToWorld(GetMousePosition());
+
+			Body* body = m_world->CreateBody(type, position, GUI::massValue, GUI::sizeValue, ColorFromHSV(randomf(360), 1, 1));
+
 			body->mass = GUI::massValue;
 			std::cout << "mass: " << body->size << std::endl;
 
 			body->size = GUI::sizeValue;
-			body->velocity = Vector2{ x, y };// *randomf(1, 6);
 			body->restitution = randomf(0.5f, 1.0f);
 		}
+
+		if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
+		{
+			Vector2 position = m_camera->ScreenToWorld(GetMousePosition());
+			m_selected = GUI::GetBodyIntersect(position, m_world->GetBodies(), *m_camera);
+			
+		}
+
+		
 	}
 	
 	//Apply collision
@@ -63,22 +71,28 @@ void VectorScene::Update()
 	
 }
 
-void VectorScene::Draw()
+void SpringScene::Draw()
 {
 	m_camera->BeginMode();
 	DrawGrid(10, 5, DARKGRAY);
 	m_world->Draw(*this);
 
+	if (m_selected)
+	{
+		DrawCircleLine(m_selected->position, m_selected->size, WHITE, 10);
+	}
+
+
 	m_camera->EndMode();
 }
 
-void VectorScene::DrawGUI()
+void SpringScene::DrawGUI()
 {
 	GUI::Draw();
 }
 
 
-void VectorScene::FixedUpdate()
+void SpringScene::FixedUpdate()
 {
 	
 	//apply forces

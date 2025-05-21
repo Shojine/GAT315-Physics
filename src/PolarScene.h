@@ -13,4 +13,5 @@ public:
 	void Update() override;
 	void Draw() override;
 	void DrawGUI() override;
+	void FixedUpdate() override;
 };

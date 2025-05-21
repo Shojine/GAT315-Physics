@@ -11,6 +11,8 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 #include "raylib.h"
 #include "PolarScene.h"
 #include "vector_scene.h"
+#include "spring_scene.h"
+#include "gravitation.h"
 
 
 #include "resource_dir.h"	// utility header for SearchAndSetResourceDir
@@ -32,17 +34,27 @@ int main ()
 	//Scene* scene = new TrigonometryScene("Trigonometry", 1280, 720, BLACK);
 	//Scene* scene = new PolarScene("Trigonometry", 1280, 720, BLACK);
 
-	Scene* scene = new VectorScene("Vector", 1280, 720, BLACK);
-
+	Scene* scene = new SpringScene("Vector", 1280, 720, BLACK);
 	scene->Initialize();
+
+	SetTargetFPS(60);
+
+	float timeAccum = 0;
 
 	while (!WindowShouldClose())
 	{
 		// Update the scene
 		scene->Update();
+		timeAccum +=  std::min(GetFrameTime(), 0.5f);
+		while (timeAccum >= Scene::fixedTimeStep)
+		{
+			scene->FixedUpdate();
+			timeAccum -= Scene::fixedTimeStep;
+		}
 		// Draw the scene
 		scene->BeginDraw();
 		scene->Draw();
+		scene->DrawGUI();
 		scene->EndDraw();
 	}
 

@@ -1,15 +1,27 @@
 #include "Body.h"
 #include "raymath.h"
+#include "integrator.h"
+#include "world.h"
 
 void Body::Step(float dt)
 {
-	//Update position by velocity
-	position += velocity * dt;
-	velocity *= 1.0f / (1.0f + (damping * dt)); // Damping
-	velocity += World::gravity * dt; // Gravity
+	if (type != Type::Dynamic) return;
+	//Apply gravity
+	force +=  (World::gravity * gravityScale) * mass; // Gravity
+	//Compute accelration
+	acceleration = (force * invMass); // F = m * a => a = F / m
+	
+	SemiImplicitIntegrator(*this, dt); // Integrate position and velocity
+
+	
 }
 
 void Body::Draw(const Scene& scene)
 {
 	scene.DrawCircle(position, size, color);
+}
+
+void Body::AppplyForce(const Vector2& force)
+{
+	this->force += force;
 }

@@ -112,3 +112,8 @@ void PolarScene::Draw()
 void PolarScene::DrawGUI()
 {
 }
+
+void PolarScene::FixedUpdate()
+{
+
+}
