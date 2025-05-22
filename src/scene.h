@@ -28,6 +28,7 @@ public:
 	static constexpr float fixedTimeStep{ 1.0f / 60.0f}; // 60 FPS
 
 	friend struct Body;
+	friend struct Spring;
 
 protected:
 	void DrawText(const std::string& text, const Vector2& world, int fontSize, const Color& color) const;

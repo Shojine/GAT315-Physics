@@ -19,7 +19,7 @@ public:
 	void FixedUpdate() override;
 private:
 	Body* m_selected{ nullptr };
-	Body* m_main{ nullptr };
+	Body* m_connected{ nullptr };
 
 	
 };

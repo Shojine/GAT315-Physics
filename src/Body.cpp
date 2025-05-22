@@ -21,7 +21,7 @@ void Body::Draw(const Scene& scene)
 	scene.DrawCircle(position, size, color);
 }
 
-void Body::AppplyForce(const Vector2& force)
+void Body::ApplyForce(const Vector2& force)
 {
 	this->force += force;
 }

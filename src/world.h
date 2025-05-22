@@ -1,11 +1,13 @@
 #pragma once
 #include "raylib.h"
 #include "Body.h"
+#include "spring.h"
 #include <vector>
 
 
 
 using bodies_t = std::vector<Body*>;
+using springs_t = std::vector<Spring*>;
 
 class Scene;
 
@@ -24,8 +26,11 @@ public:
 	void Step(float timeStep);
 	void Draw(const Scene& scene);
 	void DestroyAll();
-
 	bodies_t& GetBodies(){ return m_bodies; }
+
+	//springs
+
+	Spring* CreateSpring(struct Body* bodyA, struct Body* bodyB, float restLength, float stiffness);
 
 	inline static Vector2 gravity{ 0, -9.81f };
 	inline static float gravitation = 0;
@@ -35,4 +40,5 @@ public:
 
 private:
 	bodies_t m_bodies;
+	springs_t m_springs;
 };

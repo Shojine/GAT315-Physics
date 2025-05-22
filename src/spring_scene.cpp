@@ -43,7 +43,24 @@ void SpringScene::Update()
 		{
 			Vector2 position = m_camera->ScreenToWorld(GetMousePosition());
 			m_selected = GUI::GetBodyIntersect(position, m_world->GetBodies(), *m_camera);
-			
+		}
+		if (m_selected)
+		{
+			if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+			{
+				Vector2 position = m_camera->ScreenToWorld(GetMousePosition());
+				m_connected = GUI::GetBodyIntersect(position, m_world->GetBodies(), *m_camera);
+			}
+			else
+			{
+				if (m_selected && m_connected)
+				{
+					float distance = Vector2Distance(m_selected->position, m_connected->position);
+					m_world->CreateSpring(m_selected, m_connected, distance, 20);
+				}
+				m_selected = nullptr;
+				m_connected = nullptr;
+			}
 		}
 
 		
@@ -80,6 +97,15 @@ void SpringScene::Draw()
 	if (m_selected)
 	{
 		DrawCircleLine(m_selected->position, m_selected->size, WHITE, 10);
+		if (m_connected)
+		{
+			DrawCircleLine(m_connected->position, m_connected->size, WHITE, 10);
+			DrawLine(m_selected->position, m_connected->position, 3, GREEN);
+		}
+		else
+		{
+			DrawLine(m_selected->position, m_camera->ScreenToWorld(GetMousePosition()), 3, RED);
+		}
 	}
 
 

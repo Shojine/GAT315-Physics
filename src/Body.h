@@ -47,7 +47,7 @@ public:
 	void Step(float time);
 	void Draw(const Scene& scene);
 
-	void AppplyForce(const Vector2& force);
+	void ApplyForce(const Vector2& force);
 
 	void ClearForce() { force = Vector2{ 0,0 }; }
 
