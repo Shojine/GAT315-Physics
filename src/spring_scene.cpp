@@ -37,6 +37,7 @@ void SpringScene::Update()
 
 			body->size = GUI::sizeValue;
 			body->restitution = randomf(0.5f, 1.0f);
+			
 		}
 
 		if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
@@ -56,7 +57,7 @@ void SpringScene::Update()
 				if (m_selected && m_connected)
 				{
 					float distance = Vector2Distance(m_selected->position, m_connected->position);
-					m_world->CreateSpring(m_selected, m_connected, distance, 20);
+					m_world->CreateSpring(m_selected, m_connected, distance, GUI::stiffnessValue, GUI::dampingValue);
 				}
 				m_selected = nullptr;
 				m_connected = nullptr;

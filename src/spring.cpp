@@ -3,21 +3,21 @@
 #include "raymath.h"
 
 
-void Spring::ApplyForce(float damping, float kMultiplier)
+void Spring::ApplyForce(float kMultiplier)
 {
 	Vector2 direction = bodyA->position - bodyB->position;
-	float lengthSqr = Vector2Length(direction);
+	float lengthSqr = Vector2LengthSqr(direction);
 	if (lengthSqr <= EPSILON) return;
 
 	float length = sqrtf(lengthSqr);
-	float displacement = Vector2Length(direction);
+	float displacement = length - restLength;
 	float forceMagnitude = -(k * kMultiplier) * displacement; // f = -kx Hooke's Law
 
 	Vector2 ndirection = direction / length;
 	Vector2 force = ndirection * forceMagnitude;
 
 	Vector2 dv = bodyA->velocity - bodyB->velocity;
-	float damperFactor = Vector2DotProduct(dv, ndirection);
+	float damperFactor = Vector2DotProduct(dv, ndirection) * damping;
 	Vector2 dampingForce = ndirection * damperFactor;
 
 	force -= dampingForce;

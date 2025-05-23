@@ -30,7 +30,7 @@ public:
 
 	//springs
 
-	Spring* CreateSpring(struct Body* bodyA, struct Body* bodyB, float restLength, float stiffness);
+	Spring* CreateSpring(struct Body* bodyA, struct Body* bodyB, float restLength, float stiffness,float damping);
 
 	inline static Vector2 gravity{ 0, -9.81f };
 	inline static float gravitation = 0;

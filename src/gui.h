@@ -27,10 +27,13 @@ public:
     inline static  float gravityScaleValue = 1.0f;
     inline static  float dampingValue = 0.2f;
     inline static  float restitutionValue = 0.5f;
+    inline static float worldStiffnessValue = 1.0f;
+
+
     inline static  bool bodyTypeEditMode = false;
     inline static  int bodyTypeActive = 0;
     inline static  float springDampingValue = 0.5f;
-    inline static  float stiffnessValue = 1.0f;
+    inline static  float stiffnessValue = 15.0f;
     inline static  float gravitationValue = 0.0f;
     inline static  float gravityValue = 0.0f;
     inline static  bool simulateActive = true;
