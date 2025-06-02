@@ -27,8 +27,8 @@ public:
 	float ScreenToWorld(float screen) const { return screen / m_ppu; }
 	float WorldToScreen(float world) const { return world * m_ppu; }
 
-	//float GetAspectRatio() const { return m_camera.offset.x / m_camera.offset.y; }
-	//AABB GetAABB() { return AABB{ m_camera.target, { GetAspectRatio() * m_size * 2, m_size * 2 } }; }
+	float GetAspectRatio() const { return m_camera.offset.x / m_camera.offset.y; }
+	AABB GetAABB() { return AABB{ m_camera.target, { GetAspectRatio() * m_size * 2, m_size * 2 } }; }
 
 	Vector2 ScreenToWorld(const Vector2& screen);
 	Vector2 WorldToScreen(const Vector2& world);
