@@ -1,7 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "scene.h"
-
+#include "aabb.h"
 
 struct Body
 {
@@ -12,6 +12,13 @@ public:
 		Kinematic,
 		Static
 	
+	};
+
+	enum class ForceMode
+	{
+		Force,
+		Impulse,
+		Velocity
 	};
 
 
@@ -47,10 +54,10 @@ public:
 	void Step(float time);
 	void Draw(const Scene& scene);
 
-	void ApplyForce(const Vector2& force);
+	void ApplyForce(const Vector2& force, ForceMode forceMode = ForceMode::Force);
 
 	void ClearForce() { force = Vector2{ 0,0 }; }
-
+	AABB GetAABB() const { return AABB{ position, { size * 2, size * 2 } }; }
 
 
 public:
@@ -58,6 +65,7 @@ public:
 	Vector2 velocity{ 0,0 };
 	Vector2 acceleration{ 0,0 };
 	Vector2 force{ 0,0 };
+
 
 	float mass{ 1 };// density of an object (the measure of it's resistance to acceleration when force is applied)
 	float invMass{ 1 }; // 1/mass
