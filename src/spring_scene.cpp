@@ -23,6 +23,11 @@ void SpringScene::Update()
 
 	if (IsKeyPressed(KEY_SPACE)) World::simulate = !World::simulate;
 
+	if (World::reset)
+	{
+		m_world->DestroyAll();
+		World::reset = false;
+	}
 
 
 	if (!GUI::mouseOverGUI)

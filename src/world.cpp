@@ -77,7 +77,14 @@ void World::DestroyAll()
 		delete body;
 	}
 
+	for (auto spring : m_springs)
+	{
+		delete spring;
+	}
+
+
 	m_bodies.clear();
+	m_springs.clear();
 }
 
 

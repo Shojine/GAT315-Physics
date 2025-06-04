@@ -1,5 +1,6 @@
 #include "trigonometry_scene.h"
 
+
 void TrigonometryScene::Initialize()
 {
 	m_camera = new SceneCamera(Vector2{ (float)m_width / 2,(float)m_height / 2 });
@@ -26,13 +27,13 @@ float Vector2Length(const Vector2& v)
 }
 
 
-Vector2 VectorNormalize(const Vector2& v)
-{
-	float l = Vector2Length(v);
-	if (l == 0) return Vector2{ 0, 0 }; // avoid division by zero
-	return Vector2{ v.x / l, v.y / l }; // normalize the vector
-	
-}
+//Vector2 VectorNormalize(const Vector2& v)
+//{
+//	float l = Vector2Length(l);
+//	if (l == 0) return Vector2{ 0, 0 }; // avoid division by zero
+//	return Vector2{ v.x / l, v.y / l }; // normalize the vector
+//	
+//}
 
 float Vector2Angle(const Vector2& v)
 {

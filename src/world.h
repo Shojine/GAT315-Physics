@@ -39,6 +39,7 @@ public:
 	inline static float gravitation = 0;
 	inline static float springStiffnessMultiplier = 1;
 	inline static bool simulate = true;
+	inline static bool reset = false;
 
 
 private:
