@@ -109,3 +109,24 @@ applications, and to alter it and redistribute it freely, subject to the followi
   as being the original software.
 
   3. This notice may not be removed or altered from any source distribution.
+
+
+
+
+
+
+# Examples 
+![T_Tatar_Cardioid](https://github.com/user-attachments/assets/c44322e7-dfbb-4690-8ca1-d8ac82d69381)
+
+![T_Tatar_User](https://github.com/user-attachments/assets/1d628172-b14f-451f-98f5-23fc60ce084a)
+
+
+![TTatar_Archimedian](https://github.com/user-attachments/assets/1e9ff47c-99a8-47d1-b35b-bb1604fc653b)
+
+
+![image](https://github.com/user-attachments/assets/bb9eee6a-e240-4b0e-8f61-767825a064bd)
+
+![image](https://github.com/user-attachments/assets/58644a36-cb2e-40a8-b3af-3a873ab3d3ed)
+
+
+
